@@ -19,7 +19,7 @@ const rootRouter = express.Router()
 rootRouter.get('/', (req: Request, res: Response) => {
   LogInfo('GET: http://localhost:8081/api')
   // Send Header
-  res.send('')
+  res.send('Welcome to my API Restful: Express + TS + Nodemon + Jest + Swagger  + Mongoose')
 })
 
 // Redirections to Routers & Controllers

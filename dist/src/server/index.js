@@ -22,7 +22,7 @@ server.use(express_1.default.urlencoded({ extended: true, limit: '50mb' }));
 server.use(express_1.default.json({ limit: '50mb' }));
 // http://localhost:8081 -> http://localhost:8081/api
 server.get('/', (req, res) => {
-    res.redirect('api');
+    res.redirect('/api');
 });
 exports.default = server;
 //# sourceMappingURL=index.js.map

@@ -17,7 +17,7 @@ const HelloController_1 = require("../controllers/HelloController");
 const logger_1 = require("../utils/logger");
 // Router from express
 const helloRouter = express_1.default.Router();
-// http://localhost:8081/api/hello
+// http://localhost:8081/api/hello?name=Ruben
 helloRouter.route('/').get((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     // Obtain a Query Param

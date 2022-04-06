@@ -5,7 +5,7 @@ import { LogInfo } from '../utils/logger'
 // Router from express
 const helloRouter = express.Router()
 
-// http://localhost:8081/api/hello
+// http://localhost:8081/api/hello?name=Ruben
 helloRouter.route('/').get(async (req: Request, res: Response) => {
   // Obtain a Query Param
   const name: any = req?.query?.name

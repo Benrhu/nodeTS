@@ -18,7 +18,7 @@ const rootRouter = express_1.default.Router();
 rootRouter.get('/', (req, res) => {
     (0, logger_1.LogInfo)('GET: http://localhost:8081/api');
     // Send Header
-    res.send('');
+    res.send('Welcome to my API Restful: Express + TS + Nodemon + Jest + Swagger  + Mongoose');
 });
 // Redirections to Routers & Controllers
 server.use('/', rootRouter); // http://localhost:8081/api
