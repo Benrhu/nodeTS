@@ -9,9 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.HelloController = void 0;
+exports.GoodbyeController = void 0;
 const logger_1 = require("../utils/logger");
-class HelloController {
+class GoodbyeController {
     getDate(date) {
         return __awaiter(this, void 0, void 0, function* () {
             return { date: new Date() };
@@ -19,10 +19,10 @@ class HelloController {
     }
     getMessage(name) {
         return __awaiter(this, void 0, void 0, function* () {
-            (0, logger_1.LogSuccess)('[/api/hello] Get Request');
-            return { message: `Helo World ${name || 'Rubén'}` };
+            (0, logger_1.LogSuccess)('[/api/goodbye] Get Request');
+            return { message: `Goodbye ${name || 'Rubén'}` };
         });
     }
 }
-exports.HelloController = HelloController;
-//# sourceMappingURL=HelloController.js.map
+exports.GoodbyeController = GoodbyeController;
+//# sourceMappingURL=GoodbyeController.js.map

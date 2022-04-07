@@ -9,7 +9,7 @@ const port = process.env.PORT || 8081
 // Execute server
 
 server.listen(port, () => {
-  LogSuccess(`[SERVER OB]: Running in http://localhost:${port}/api`)
+  LogSuccess(`[SERVER ON]: Running in http://localhost:${port}/api`)
 })
 
 // Control SERVER ERROR

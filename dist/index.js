@@ -10,7 +10,7 @@ dotenv_1.default.config();
 const port = process.env.PORT || 8081;
 // Execute server
 server_1.default.listen(port, () => {
-    (0, logger_1.LogSuccess)(`[SERVER OB]: Running in http://localhost:${port}/api`);
+    (0, logger_1.LogSuccess)(`[SERVER ON]: Running in http://localhost:${port}/api`);
 });
 // Control SERVER ERROR
 server_1.default.on('error', (error) => {
