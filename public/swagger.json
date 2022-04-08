@@ -1,0 +1,68 @@
+{
+	"basePath": "/",
+	"consumes": [
+		"application/json"
+	],
+	"definitions": {
+		"BasicResponse": {
+			"properties": {
+				"message": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"message"
+			],
+			"type": "object",
+			"description": "Basic JSON response for Controllers"
+		}
+	},
+	"info": {
+		"title": "intensivonode",
+		"version": "1.0.0",
+		"description": "Learning node and mongo",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {
+			"name": "@rubdh"
+		}
+	},
+	"paths": {
+		"/api/hello": {
+			"get": {
+				"operationId": "GetMessage",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Promise of BasicResponse and DateResponse",
+						"schema": {
+							"$ref": "#/definitions/BasicResponse"
+						}
+					}
+				},
+				"description": "Endpoint to retrieve a Message \"Hello {name}\" in JSON",
+				"tags": [
+					"HelloController"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "Name of user to be  greeted",
+						"in": "query",
+						"name": "name",
+						"required": false,
+						"type": "string"
+					}
+				]
+			}
+		}
+	},
+	"produces": [
+		"application/json"
+	],
+	"swagger": "2.0",
+	"securityDefinitions": {}
+}

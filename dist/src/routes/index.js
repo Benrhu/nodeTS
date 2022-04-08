@@ -9,7 +9,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 const express_1 = __importDefault(require("express"));
 const HelloRouter_1 = __importDefault(require("./HelloRouter"));
-const DateRouter_1 = __importDefault(require("./DateRouter"));
 const logger_1 = require("../utils/logger");
 // Server instance
 const server = (0, express_1.default)();
@@ -24,7 +23,6 @@ rootRouter.get('/', (req, res) => {
 // Redirections to Routers & Controllers
 server.use('/', rootRouter); // http://localhost:8081/api
 server.use('/hello', HelloRouter_1.default); // http://localhost:8081/api/hello
-server.use('/goodbye', DateRouter_1.default); // http://localhost:8081/api/goodbye
 // Add more routes to the app
 exports.default = server;
 //# sourceMappingURL=index.js.map

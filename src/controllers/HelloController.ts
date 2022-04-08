@@ -1,5 +1,5 @@
 import { Get, Query, Route, Tags } from 'tsoa'
-import { BasicResponse, DateResponse } from './types'
+import { BasicResponse } from './types'
 import { IHelloController } from './interfaces'
 import { LogSuccess } from '../utils/logger'
 
@@ -12,11 +12,8 @@ export class HelloController implements IHelloController {
    * @param date Actual date
    * @returns {} Promise of BasicResponse and DateResponse
    */
-  @Get('/')
-  public async getDate (@Query()date?: Date): Promise<DateResponse> {
-    return { date: new Date() }
-  }
 
+  @Get('/')
   public async getMessage (@Query()name?: string): Promise<BasicResponse> {
     LogSuccess('[/api/hello] Get Request')
     return { message: `Helo World ${name || 'Rubén'}` }

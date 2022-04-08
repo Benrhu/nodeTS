@@ -31,11 +31,6 @@ let HelloController = class HelloController {
      * @param date Actual date
      * @returns {} Promise of BasicResponse and DateResponse
      */
-    getDate(date) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return { date: new Date() };
-        });
-    }
     getMessage(name) {
         return __awaiter(this, void 0, void 0, function* () {
             (0, logger_1.LogSuccess)('[/api/hello] Get Request');
@@ -45,12 +40,6 @@ let HelloController = class HelloController {
 };
 __decorate([
     (0, tsoa_1.Get)('/'),
-    __param(0, (0, tsoa_1.Query)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Date]),
-    __metadata("design:returntype", Promise)
-], HelloController.prototype, "getDate", null);
-__decorate([
     __param(0, (0, tsoa_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
