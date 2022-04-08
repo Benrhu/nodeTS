@@ -1,13 +1,23 @@
+import { Get, Query, Route, Tags } from 'tsoa'
 import { BasicResponse, DateResponse } from './types'
 import { IHelloController } from './interfaces'
 import { LogSuccess } from '../utils/logger'
 
+@Route('/api/hello')
+@Tags('HelloController')
 export class HelloController implements IHelloController {
-  public async getDate (date?: Date): Promise<DateResponse> {
+  /**
+   * Endpoint to retrieve a Message "Hello {name}" in JSON
+   * @param name Name of user to be  greeted
+   * @param date Actual date
+   * @returns {} Promise of BasicResponse and DateResponse
+   */
+  @Get('/')
+  public async getDate (@Query()date?: Date): Promise<DateResponse> {
     return { date: new Date() }
   }
 
-  public async getMessage (name?: string): Promise<BasicResponse> {
+  public async getMessage (@Query()name?: string): Promise<BasicResponse> {
     LogSuccess('[/api/hello] Get Request')
     return { message: `Helo World ${name || 'Rubén'}` }
   }
