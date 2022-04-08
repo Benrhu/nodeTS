@@ -4,7 +4,8 @@
   "description": "Learning node and mongo",
   "main": "index.ts",
   "scripts": {
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.ts\" ",
+    "swagger": "tsoa spec",
+    "dev": "concurrently \"npx tsc --watch\" \"npm run swagger\" \"nodemon -q dist/index.ts\" ",
     "test": "jest",
     "serve:coverage": "npm run test && cd coverage/lcov-report && npx serve",
     "build": "npx webpack --mode development",
@@ -33,6 +34,8 @@
     "eslint-plugin-promise": "^4.3.1",
     "express": "^4.17.3",
     "helmet": "^5.0.2",
+    "mongodb": "^4.5.0",
+    "mongoose": "^6.2.10",
     "swagger-jsdoc": "^6.2.0",
     "swagger-ui-express": "^4.3.0",
     "ts-node": "^10.7.0",
