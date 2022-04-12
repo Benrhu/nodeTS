@@ -1,4 +1,4 @@
-import { BasicResponse } from '@/controllers/types'
+import { BasicResponse } from '../controllers/types'
 import express, { Request, Response } from 'express'
 import { HelloController } from '../controllers/HelloController'
 import { LogInfo } from '../utils/logger'

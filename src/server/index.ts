@@ -36,7 +36,7 @@ server.use('/api', rootRouter)
 server.use(express.static('public'))
 
 // TODO Mongoose Connection
-mongoose.connect('mongodb://localhost:27017/')
+mongoose.connect('mongodb://localhost:27017/NodeTS')
 
 // Security Config
 server.use(cors())

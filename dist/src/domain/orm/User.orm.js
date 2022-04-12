@@ -9,14 +9,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetAllUsers = void 0;
+exports.getUserByID = exports.getAllUsers = void 0;
 const User_entity_1 = require("../entities/User.entity");
-const logger_1 = require("@/utils/logger");
+const logger_1 = require("../../utils/logger");
 // CRUD
 /**
  * Method to obtain all Users from Collection "Users" in Mongo Server
  */
-const GetAllUsers = () => __awaiter(void 0, void 0, void 0, function* () {
+const getAllUsers = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const userModel = (0, User_entity_1.userEntity)();
         // Search all users
@@ -26,11 +26,55 @@ const GetAllUsers = () => __awaiter(void 0, void 0, void 0, function* () {
         (0, logger_1.LogError)(`[ORM ERROR]: Getting All Users: ${error}`);
     }
 });
-exports.GetAllUsers = GetAllUsers;
-// TODO:
-// - Get User By ID
-// - Get User By Email
+exports.getAllUsers = getAllUsers;
+const getUserByID = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const userModel = (0, User_entity_1.userEntity)();
+        // Search User By ID
+        return yield userModel.findById(id);
+    }
+    catch (error) {
+        (0, logger_1.LogError)(`[ORM ERROR]: Getting User By ID: ${error}`);
+    }
+});
+exports.getUserByID = getUserByID;
+/*
 // - Delete User By ID
+export const deleteUserByID = async (id: string): Promise<any | undefined> => {
+  try {
+    const userModel = userEntity()
+
+    // Delete User BY ID
+    return await userModel.deleteOne({ _id: id })
+  } catch (error) {
+    LogError(`[ORM ERROR]: Deleting User By ID: ${error}`)
+  }
+}
+
 // - Create New User
-// - Update User Buy ID
+export const createUser = async (): Promise<any | undefined> => {
+  try {
+    const userModel = userEntity()
+
+    // Create / Insert new User
+    return await userModel.create()
+  } catch (error) {
+    LogError(`[ORM ERROR]: Creating User: ${error}`)
+  }
+}
+
+// - Update User By ID
+export const updateUserByID = async (
+  id: string,
+  user: any
+): Promise<any | undefined> => {
+  try {
+    const userModel = userEntity()
+
+    // Update User
+    return await userModel.findByIdAndUpdate(id, user)
+  } catch (error) {
+    LogError(`[ORM ERROR]: Updating User ${id}: ${error}`)
+  }
+} */
 //# sourceMappingURL=User.orm.js.map

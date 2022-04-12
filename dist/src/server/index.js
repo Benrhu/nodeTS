@@ -25,7 +25,7 @@ server.use('/docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.def
 server.use('/api', routes_1.default);
 server.use(express_1.default.static('public'));
 // TODO Mongoose Connection
-mongoose_1.default.connect('mongodb://localhost:27017/');
+mongoose_1.default.connect('mongodb://localhost:27017/NodeTS');
 // Security Config
 server.use((0, cors_1.default)());
 server.use((0, helmet_1.default)());

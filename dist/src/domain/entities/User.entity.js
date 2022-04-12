@@ -8,9 +8,10 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const userEntity = () => {
     const userSchema = new mongoose_1.default.Schema({
         name: String,
-        email: String
+        email: String,
+        age: Number
     });
-    return mongoose_1.default.model('Users', userSchema);
+    return mongoose_1.default.models.Users || mongoose_1.default.model('Users', userSchema);
 };
 exports.userEntity = userEntity;
 //# sourceMappingURL=User.entity.js.map

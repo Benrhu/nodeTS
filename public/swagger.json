@@ -58,6 +58,35 @@
 					}
 				]
 			}
+		},
+		"/api/users": {
+			"get": {
+				"operationId": "GetUsers",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"additionalProperties": true
+						}
+					}
+				},
+				"description": "Endpoint to retrieve the Users in the Collection \"Users\" of DB.",
+				"tags": [
+					"UserController"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "id",
+						"required": false,
+						"type": "string"
+					}
+				]
+			}
 		}
 	},
 	"produces": [

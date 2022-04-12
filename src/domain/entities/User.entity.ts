@@ -4,8 +4,9 @@ export const userEntity = () => {
   const userSchema = new mongoose.Schema(
     {
       name: String,
-      email: String
+      email: String,
+      age: Number
     }
   )
-  return mongoose.model('Users', userSchema)
+  return mongoose.models.Users || mongoose.model('Users', userSchema)
 }
