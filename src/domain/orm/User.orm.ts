@@ -29,7 +29,6 @@ export const getUserByID = async (id: string): Promise<any | undefined> => {
   }
 }
 
-/*
 // - Delete User By ID
 export const deleteUserByID = async (id: string): Promise<any | undefined> => {
   try {
@@ -43,7 +42,7 @@ export const deleteUserByID = async (id: string): Promise<any | undefined> => {
 }
 
 // - Create New User
-export const createUser = async (): Promise<any | undefined> => {
+export const createUser = async (user:any): Promise<any | undefined> => {
   try {
     const userModel = userEntity()
 
@@ -67,4 +66,4 @@ export const updateUserByID = async (
   } catch (error) {
     LogError(`[ORM ERROR]: Updating User ${id}: ${error}`)
   }
-} */
+}

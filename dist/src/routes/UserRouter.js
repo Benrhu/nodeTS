@@ -26,48 +26,55 @@ usersRouter.route('/')
     // Obtain Response
     const response = yield controller.getUsers(id);
     return res.status(200).send(response);
+}))
+    .delete((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _b;
+    // Obtain a Query Param (ID)
+    const id = (_b = req === null || req === void 0 ? void 0 : req.query) === null || _b === void 0 ? void 0 : _b.id;
+    (0, logger_1.LogInfo)(`Query Param: ${id}`);
+    // Controller Instance to excute method
+    const controller = new UsersController_1.UserController();
+    // Obtain Reponse
+    const response = yield controller.deleteUser(id);
+    // Send to the client the response
+    return res.status(200).send(response);
+}))
+    .post((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _c, _d, _e;
+    const name = (_c = req === null || req === void 0 ? void 0 : req.query) === null || _c === void 0 ? void 0 : _c.name;
+    const age = (_d = req === null || req === void 0 ? void 0 : req.query) === null || _d === void 0 ? void 0 : _d.age;
+    const email = (_e = req === null || req === void 0 ? void 0 : req.query) === null || _e === void 0 ? void 0 : _e.email;
+    // Controller Instance to excute method
+    const controller = new UsersController_1.UserController();
+    const user = {
+        name: name || 'dafault',
+        email: email || 'default email',
+        age: age || 18
+    };
+    // Obtain Response
+    const response = yield controller.createUser(user);
+    // Send to the client the response
+    return res.send(response);
+}))
+    .put((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _f, _g, _h, _j;
+    // Obtain a Query Param (ID)
+    const id = (_f = req === null || req === void 0 ? void 0 : req.query) === null || _f === void 0 ? void 0 : _f.id;
+    const name = (_g = req === null || req === void 0 ? void 0 : req.query) === null || _g === void 0 ? void 0 : _g.name;
+    const email = (_h = req === null || req === void 0 ? void 0 : req.query) === null || _h === void 0 ? void 0 : _h.email;
+    const age = (_j = req === null || req === void 0 ? void 0 : req.query) === null || _j === void 0 ? void 0 : _j.age;
+    (0, logger_1.LogInfo)(`Query Params: ${id}, ${name}, ${age}, ${email}`);
+    // Controller Instance to excute method
+    const controller = new UsersController_1.UserController();
+    const user = {
+        name: name,
+        email: email,
+        age: age
+    };
+    // Obtain Response
+    const response = yield controller.updateUser(id, user);
+    // Send to the client the response
+    return res.send(response);
 }));
-/*  .post(async (req:Request, res: Response) => {
-    const name: any = req?.query?.name
-    const age: any = req?.query?.age
-    const email: any = req?.query?.email
-
-    // Controller Instance to excute method
-    const controller: UserController = new UserController()
-
-    const user = {
-      name: name || 'dafault',
-      email: email || 'default email',
-      age: age || 18
-    }
-
-    // Obtain Response
-    const response: any = await controller.createUser(user)
-    // Send to the client the response
-    return res.send(response)
-  })
-  .put(async (req:Request, res: Response) => {
-  // Obtain a Query Param (ID)
-    const id: any = req?.query?.id
-    const name: any = req?.query?.name
-    const email: any = req?.query?.email
-    const age: any = req?.query?.age
-    LogInfo(`Query Params: ${id}, ${name}, ${age}, ${email}`)
-
-    // Controller Instance to excute method
-    const controller: UserController = new UserController()
-
-    const user = {
-      name: name,
-      email: email,
-      age: age
-    }
-
-    // Obtain Response
-    const response: any = await controller.updateUser(id, user)
-
-    // Send to the client the response
-    return res.send(response)
-  }) */
 exports.default = usersRouter;
 //# sourceMappingURL=UserRouter.js.map

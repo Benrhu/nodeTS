@@ -15,7 +15,19 @@ usersRouter.route('/')
     return res.status(200).send(response)
   })
 
-/*  .post(async (req:Request, res: Response) => {
+  .delete(async (req:Request, res: Response) => {
+    // Obtain a Query Param (ID)
+    const id: any = req?.query?.id
+    LogInfo(`Query Param: ${id}`)
+    // Controller Instance to excute method
+    const controller: UserController = new UserController()
+    // Obtain Reponse
+    const response: any = await controller.deleteUser(id)
+    // Send to the client the response
+    return res.status(200).send(response)
+  })
+
+  .post(async (req:Request, res: Response) => {
     const name: any = req?.query?.name
     const age: any = req?.query?.age
     const email: any = req?.query?.email
@@ -56,6 +68,6 @@ usersRouter.route('/')
 
     // Send to the client the response
     return res.send(response)
-  }) */
+  })
 
 export default usersRouter

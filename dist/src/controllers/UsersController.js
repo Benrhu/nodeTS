@@ -22,10 +22,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
-const tsoa_1 = require("tsoa"); // Delete, Post, Put, Query
-const logger_1 = require("../utils/logger"); // LogWarning
+const tsoa_1 = require("tsoa");
+const logger_1 = require("../utils/logger");
 // ORM - Users Collection
-const User_orm_1 = require("../domain/orm/User.orm"); //  deleteUserByID, createUser, updateUserByID
+const User_orm_1 = require("../domain/orm/User.orm");
 let UserController = class UserController {
     /**
      * Endpoint to retrieve the Users in the Collection "Users" of DB.
@@ -44,6 +44,63 @@ let UserController = class UserController {
             return response;
         });
     }
+    /**
+      * Endpoint to delete the Users in the Collection "Users" of DB
+      * @param {string} id Id of user to delete (optional)
+      * @returns message informing if deletion was correct
+      */
+    deleteUser(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let response = '';
+            if (id) {
+                (0, logger_1.LogSuccess)(`[/api/users] Delete User By ID: ${id} `);
+                yield (0, User_orm_1.deleteUserByID)(id).then((r) => {
+                    response = {
+                        message: `User with id ${id} deleted successfully`
+                    };
+                });
+            }
+            else {
+                (0, logger_1.LogWarning)('[/api/users] Delete User Request WITHOUT ID');
+                response = {
+                    message: 'Please, provide an ID to remove from database'
+                };
+            }
+            return response;
+        });
+    }
+    createUser(user) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let response = '';
+            yield (0, User_orm_1.createUser)(user).then((r) => {
+                (0, logger_1.LogSuccess)(`[/api/users] Create User: ${user} `);
+                response = {
+                    message: `User created successfully: ${user.name}`
+                };
+            });
+            return response;
+        });
+    }
+    updateUser(id, user) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let response = '';
+            if (id) {
+                (0, logger_1.LogSuccess)(`[/api/users] Update User By ID: ${id} `);
+                yield (0, User_orm_1.updateUserByID)(id, user).then((r) => {
+                    response = {
+                        message: `User with id ${id} updated successfully`
+                    };
+                });
+            }
+            else {
+                (0, logger_1.LogWarning)('[/api/users] Update User Request WITHOUT ID');
+                response = {
+                    message: 'Please, provide an ID to update an existing user'
+                };
+                return response;
+            }
+        });
+    }
 };
 __decorate([
     (0, tsoa_1.Get)('/'),
@@ -52,6 +109,26 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "getUsers", null);
+__decorate([
+    (0, tsoa_1.Delete)('/'),
+    __param(0, (0, tsoa_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "deleteUser", null);
+__decorate([
+    (0, tsoa_1.Post)('/'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "createUser", null);
+__decorate([
+    (0, tsoa_1.Put)('/'),
+    __param(0, (0, tsoa_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "updateUser", null);
 UserController = __decorate([
     (0, tsoa_1.Route)('/api/users'),
     (0, tsoa_1.Tags)('UserController')

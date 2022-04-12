@@ -1,9 +1,9 @@
-import { Get, Query, Route, Tags } from 'tsoa' // Delete, Post, Put, Query
+import { Get, Query, Route, Tags, Delete, Post, Put } from 'tsoa'
 import { IUserController } from './interfaces'
-import { LogSuccess } from '../utils/logger' // LogWarning
+import { LogSuccess, LogWarning } from '../utils/logger'
 
 // ORM - Users Collection
-import { getAllUsers, getUserByID } from '../domain/orm/User.orm' //  deleteUserByID, createUser, updateUserByID
+import { getAllUsers, getUserByID, deleteUserByID, createUser, updateUserByID } from '../domain/orm/User.orm'
 
 @Route('/api/users')
 @Tags('UserController')
@@ -30,40 +30,40 @@ export class UserController implements IUserController {
     * @param {string} id Id of user to delete (optional)
     * @returns message informing if deletion was correct
     */
-  /* @Delete('/')
-   public async deleteUser (@Query()id?: string): Promise<any> {
-     let response: any = ''
+  @Delete('/')
+  public async deleteUser (@Query()id?: string): Promise<any> {
+    let response: any = ''
 
-     if (id) {
-       LogSuccess(`[/api/users] Delete User By ID: ${id} `)
-       await deleteUserByID(id).then((r) => {
-         response = {
-           message: `User with id ${id} deleted successfully`
-         }
-       })
-     } else {
-       LogWarning('[/api/users] Delete User Request WITHOUT ID')
-       response = {
-         message: 'Please, provide an ID to remove from database'
-       }
-     }
+    if (id) {
+      LogSuccess(`[/api/users] Delete User By ID: ${id} `)
+      await deleteUserByID(id).then((r) => {
+        response = {
+          message: `User with id ${id} deleted successfully`
+        }
+      })
+    } else {
+      LogWarning('[/api/users] Delete User Request WITHOUT ID')
+      response = {
+        message: 'Please, provide an ID to remove from database'
+      }
+    }
 
-     return response
-   }
+    return response
+  }
 
    @Post('/')
-   public async createUser (user: any): Promise<any> {
-     let response: any = ''
+  public async createUser (user: any): Promise<any> {
+    let response: any = ''
 
-     await createUser(user).then((r) => {
-       LogSuccess(`[/api/users] Create User: ${user} `)
-       response = {
-         message: `User created successfully: ${user.name}`
-       }
-     })
+    await createUser(user).then((r) => {
+      LogSuccess(`[/api/users] Create User: ${user} `)
+      response = {
+        message: `User created successfully: ${user.name}`
+      }
+    })
 
-     return response
-   }
+    return response
+  }
 
    @Put('/')
    public async updateUser (@Query()id: string, user: any): Promise<any> {
@@ -81,5 +81,7 @@ export class UserController implements IUserController {
        response = {
          message: 'Please, provide an ID to update an existing user'
        }
-     } */
+       return response
+     }
+   }
 }
