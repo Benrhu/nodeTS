@@ -1,11 +1,14 @@
 import express, { Request, Response } from 'express'
 import { UserController } from '../controllers/UsersController'
 import { LogInfo } from '../utils/logger'
+import bodyParser from 'body-parser'
 
+const jsonParser = bodyParser.json()
 // Router from express
 const usersRouter = express.Router()
 
 usersRouter.route('/')
+
   .get(async (req: Request, res: Response) => {
     const id: any = req?.query?.id
     LogInfo(`Query Param: ${id}`)
@@ -27,7 +30,7 @@ usersRouter.route('/')
     return res.status(200).send(response)
   })
 
-  .post(async (req:Request, res: Response) => {
+  .post(jsonParser, async (req:Request, res: Response) => {
     const name: any = req?.query?.name
     const age: any = req?.query?.age
     const email: any = req?.query?.email

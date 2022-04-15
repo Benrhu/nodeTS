@@ -7,9 +7,22 @@ exports.userEntity = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const userEntity = () => {
     const userSchema = new mongoose_1.default.Schema({
-        name: String,
-        email: String,
-        age: Number
+        name: {
+            type: String,
+            required: true
+        },
+        email: {
+            type: String,
+            required: true
+        },
+        age: {
+            type: Number,
+            required: true
+        },
+        password: {
+            type: String,
+            required: true
+        }
     });
     return mongoose_1.default.models.Users || mongoose_1.default.model('Users', userSchema);
 };

@@ -36,10 +36,12 @@ let UserController = class UserController {
             if (id) {
                 (0, logger_1.LogSuccess)(`[/api/users] Get User By ID: ${id} `);
                 response = yield (0, User_orm_1.getUserByID)(id);
+                response.password = '';
             }
             else {
                 (0, logger_1.LogSuccess)('[/api/users] Get All Users Request');
                 response = yield (0, User_orm_1.getAllUsers)();
+                response.password = '';
             }
             return response;
         });

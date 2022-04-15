@@ -15,6 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const UsersController_1 = require("../controllers/UsersController");
 const logger_1 = require("../utils/logger");
+const body_parser_1 = __importDefault(require("body-parser"));
+const jsonParser = body_parser_1.default.json();
 // Router from express
 const usersRouter = express_1.default.Router();
 usersRouter.route('/')
@@ -39,7 +41,7 @@ usersRouter.route('/')
     // Send to the client the response
     return res.status(200).send(response);
 }))
-    .post((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    .post(jsonParser, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _c, _d, _e;
     const name = (_c = req === null || req === void 0 ? void 0 : req.query) === null || _c === void 0 ? void 0 : _c.name;
     const age = (_d = req === null || req === void 0 ? void 0 : req.query) === null || _d === void 0 ? void 0 : _d.age;
