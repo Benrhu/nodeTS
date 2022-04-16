@@ -1,9 +1,9 @@
-import { Get, Query, Route, Tags, Delete, Post, Put } from 'tsoa'
+import { Get, Query, Route, Tags, Delete, Put } from 'tsoa'
 import { IUserController } from './interfaces'
 import { LogSuccess, LogWarning } from '../utils/logger'
 
 // ORM - Users Collection
-import { getAllUsers, getUserByID, deleteUserByID, createUser, updateUserByID } from '../domain/orm/User.orm'
+import { getAllUsers, getUserByID, deleteUserByID, updateUserByID } from '../domain/orm/User.orm'
 
 @Route('/api/users')
 @Tags('UserController')
@@ -22,7 +22,7 @@ export class UserController implements IUserController {
     } else {
       LogSuccess('[/api/users] Get All Users Request')
       response = await getAllUsers()
-      response.password = ''
+      // TODO: remove passwords from response
     }
     return response
   }
@@ -53,37 +53,23 @@ export class UserController implements IUserController {
     return response
   }
 
-   @Post('/')
-  public async createUser (user: any): Promise<any> {
+   @Put('/')
+  public async updateUser (@Query()id: string, user: any): Promise<any> {
     let response: any = ''
 
-    await createUser(user).then((r) => {
-      LogSuccess(`[/api/users] Create User: ${user} `)
+    if (id) {
+      LogSuccess(`[/api/users] Update User By ID: ${id} `)
+      await updateUserByID(id, user).then((r) => {
+        response = {
+          message: `User with id ${id} updated successfully`
+        }
+      })
+    } else {
+      LogWarning('[/api/users] Update User Request WITHOUT ID')
       response = {
-        message: `User created successfully: ${user.name}`
+        message: 'Please, provide an ID to update an existing user'
       }
-    })
-
-    return response
+      return response
+    }
   }
-
-   @Put('/')
-   public async updateUser (@Query()id: string, user: any): Promise<any> {
-     let response: any = ''
-
-     if (id) {
-       LogSuccess(`[/api/users] Update User By ID: ${id} `)
-       await updateUserByID(id, user).then((r) => {
-         response = {
-           message: `User with id ${id} updated successfully`
-         }
-       })
-     } else {
-       LogWarning('[/api/users] Update User Request WITHOUT ID')
-       response = {
-         message: 'Please, provide an ID to update an existing user'
-       }
-       return response
-     }
-   }
 }
